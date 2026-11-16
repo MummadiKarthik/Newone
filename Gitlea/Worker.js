@@ -1,9 +1,10 @@
  
- let s=45;
-
- console.log(s);
- kar(s);
- console.log(s)
+ let a=new Map([['Name1','Karthik'],['Name2','Preethi'],['Name3','Mounika']]);
+ console.log(a)
+ 
+for(let [user,name] of a){
+    console.log(user+" : "+name)
+}
  
 function decorator(fn){
 
