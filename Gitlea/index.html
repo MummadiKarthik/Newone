@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+        flex-direction: column;
+        gap: 30px;
+        }
+        .circle{
+               display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 180px;
+            gap: 30px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: rgb(27, 25, 25);
+        flex-direction: column;
+        }
+        .inner{
+               display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background-color: rgb(0, 0, 0);
+        flex-direction: column;
+        }
+
+        .display{
+            gap: 30px;
+                 display: flex;
+            justify-content: center;
+            align-items: center;
+           
+         flex-direction: column;
+        }
+        .btn{
+              gap: 30px;
+                 display: flex;
+            justify-content: center;
+            align-items: center;
+           gap: 30px;
+         flex-direction: row;
+        }
+        button{
+            border: none;
+            border-radius: 3px;
+            width: 100px;
+            height: 30px;
+            color: white;
+            cursor: pointer;
+            background-color: rgb(50, 47, 47);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="circle">
+            <div class="inner">
+                <div style="color: white;" class="time">0</div>
+                </div>
+        </div>
+        <div class="display">
+            <input type="number" name="kar" id="kar">
+            <div class="btn">
+                <button type="button" onclick="start()">Start</button>
+                                <button type="button" onclick="stop()">Stop</button>
+
+                                                <button type="button" onclick="pause()">Pause</button>
+
+            </div>
+        </div>
+    </div>
+   <script>
+   const timeDisplay = document.querySelector(".time");
+const timeInput = document.getElementById("kar");
+const circle = document.querySelector(".circle");
+
+let interval = null;
+let isPause = false;
+let totaltime = 0;
+let timeleft = 0;
+ 
+function update(){
+    const progress = totaltime > 0 ? (timeleft / totaltime) * 100 : 0;
+    circle.style.background = `conic-gradient(green ${progress}%, red ${progress}% 100%)`;
+}
+
+function start(){
+    if(!isPause){
+        const value=timeInput.value.trim();
+
+        if(isNaN(value)||value<0){
+            alert("Please enter a valid value")
+            return
+        }
+        totaltime=value;
+        timeleft=totaltime
+
+    }
+
+    interval=setInterval(()=>{
+        if(timeleft<0){
+            clearInterval(interval)
+            interval=null
+        }else{
+            timeleft--;
+            timeDisplay.textContent=timeleft
+        }
+        update()
+    },1000)
+}
+
+function pause(){
+    clearInterval(interval)
+    interval=null
+    isPause=true
+}
+function stop(){
+    clearInterval(interval)
+    interval=null;
+    isPause=false
+    timeDisplay.textContent=""
+    totaltime=0;
+    timeleft=0;
+    update()
+}
+   </script>
+</body>
+</html>
