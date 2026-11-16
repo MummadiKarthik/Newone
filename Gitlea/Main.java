@@ -1,6 +1,6 @@
 import java.util.*;
 import  java.io.*;
-
+//we code a java prpgram to delete a file
 class Main{
      public static void main(String[] args) {
          try {
