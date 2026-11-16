@@ -6,6 +6,16 @@ for(let [user,name] of a){
     console.log(user+" : "+name)
 }
  
+//map propetrties
+
+console.log(a.keys())
+console.log(a.values())
+console.log(a.entries())
+console.log(a.size)
+a.set("Name1","Mummadi")
+console.log(a)
+a.delete("Name1");
+console.log(a)
 function decorator(fn){
 
     return function(...args){
