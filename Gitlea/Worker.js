@@ -51,6 +51,47 @@ console.log(ssa.next())
 
 //closure and use cases
  
-//nested function
- 
- 
+// Yes: the returned function is a closure because it retains access to `count`.
+function brs(name){
+    let count=0;
+    return function(){
+     count++;
+     console.log(count)
+    }
+}
+let ad=brs();
+ad()
+ad()
+ad()
+
+//data prvacy
+
+function createcount(c){
+let count=c;
+return{
+    increment:function(){
+     count++;
+     console.log(count)
+    },
+    decrement:function(){
+        count--;
+        console.log(count)
+    }
+}
+}
+let sa=createcount(10);
+sa.increment()
+sa.decrement()
+sa.decrement()
+
+//function factoreis
+
+function ba(name,age){
+    return{
+        name:name,
+        age:age
+
+    }
+}
+let ada=ba("Lar",4);
+console.log(ada)
